@@ -19,15 +19,15 @@
 # include <signal.h>
 # include <sys/wait.h>
 
-typedef struct		s_unitt
+typedef struct			s_test
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_unitt	*next;
-}					t_unitt;
+	char				*name;
+	int					(*test)(void);
+	struct s_test		*next;
+}						t_test;
 
-t_unitt		*ft_unitt_create(char *test_name, int (*test)(void));
-void		ft_unitt_push(t_unitt **unitt_lst, char *test_name, int (*test)(void));
-void		ft_unitt_del(t_unitt **unitt_lst);
+t_test					*test_create(char *test_name, int (*test)(void));
+void					test_add(t_test **test_lst, char *test_name, int (*test)(void));
+void					tests_del(t_test **test_lst);
 
 #endif

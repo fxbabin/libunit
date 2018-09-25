@@ -13,11 +13,11 @@
 #include "../libft/includes/mem.h"
 #include "libunit.h"
 
-t_unitt		*ft_unitt_create(char *test_name, int (*test)(void))
+t_test		*test_create(char *test_name, int (*test)(void))
 {
-	t_unitt	*t;
+	t_test	*t;
 
-	if (!(t = (t_unitt*)ft_memalloc(sizeof(t_unitt))))
+	if (!(t = (t_test*)ft_memalloc(sizeof(t_test))))
 		return (NULL);
 	t->name = test_name;
 	t->test = test;
@@ -25,34 +25,34 @@ t_unitt		*ft_unitt_create(char *test_name, int (*test)(void))
 	return (t);
 }
 
-void		ft_unitt_push(t_unitt **unitt_lst, char *test_name, int (*test)(void))
+void		test_add(t_test **test_lst, char *test_name, int (*test)(void))
 {
-	t_unitt		*tmp;
+	t_test		*tmp;
 
-	if (!unitt_lst)
+	if (!test_lst)
 		return ;
-	if (*unitt_lst)
+	if (*test_lst)
 	{
-		tmp = *unitt_lst;
+		tmp = *test_lst;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = ft_unitt_create(test_name, test);
+		tmp->next = test_create(test_name, test);
 	}
 	else
-		*unitt_lst = ft_unitt_create(test_name, test);
+		*test_lst = test_create(test_name, test);
 }
 
-void	ft_unitt_del(t_unitt **unitt_lst)
+void	tests_del(t_test **test_lst)
 {
-	t_unitt		*tmp;
+	t_test		*tmp;
 
-	if (!unitt_lst)
+	if (!test_lst)
 		return ;
-	while (*unitt_lst)
+	while (*test_lst)
 	{
-		tmp = (*unitt_lst)->next;
-		free(*unitt_lst);
-		*unitt_lst = NULL;
-		*unitt_lst = tmp;
+		tmp = (*test_lst)->next;
+		free(*test_lst);
+		*test_lst = NULL;
+		*test_lst = tmp;
 	}
 }

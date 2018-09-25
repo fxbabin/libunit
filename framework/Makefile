@@ -15,7 +15,7 @@ NAME			=	libunit.a
 CC				=	gcc
 FLAGS			=	-Wall -Werror -Wextra -Ofast
 
-_SRCS			=	unitt_lst.c
+_SRCS			=	test_lst.c
 _LIBFT			=	libft.a
 
 SRCS_DIR		=	srcs
