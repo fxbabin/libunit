@@ -13,8 +13,7 @@
 #ifndef LIBUNIT_H
 # define LIBUNIT_H
 
-# include "../libft/includes/mem.h"
-# include "../libft/includes/ft_printf.h"
+# include "../libft/includes/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>

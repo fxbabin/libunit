@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mem.h"
+#include "../libft/includes/mem.h"
 #include "libunit.h"
 
 t_unitt		*ft_unitt_create(char *test_name, int (*test)(void))
@@ -46,7 +46,7 @@ void	ft_unitt_del(t_unitt **unitt_lst)
 {
 	t_unitt		*tmp;
 
-	if (!unitt_lst || !del)
+	if (!unitt_lst)
 		return ;
 	while (*unitt_lst)
 	{

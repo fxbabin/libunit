@@ -15,11 +15,15 @@ NAME			=	libunit.a
 CC				=	gcc
 FLAGS			=	-Wall -Werror -Wextra -Ofast
 
-_SRCS			=	
+_SRCS			=	unitt_lst.c
+_LIBFT			=	libft.a
 
-SRCS_DIR		=	.
+SRCS_DIR		=	srcs
+LIB_DIR			=	libft
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(_SRCS))
+LIBFT			=	$(addprefix $(LIB_DIR)/, $(_LIBFT))
 OBJS			=	$(SRCS:.c=.o)
+
 
 #COLORS
 _CYAN=\x1b[36m
@@ -29,9 +33,12 @@ _END=\x1b[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		@ar rcs $(NAME) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
+		@libtool -static -o $(NAME) $(OBJS) $(LIBFT)
 		@echo "$(NAME) : $(_GREEN)Done$(_END)"
+
+$(LIBFT):
+		@make -C $(LIB_DIR)
 
 %.o : %.c
 		@$(CC) $(CFLAGS) -c $< -o $@ -I includes/
