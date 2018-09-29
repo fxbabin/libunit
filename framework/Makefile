@@ -15,7 +15,7 @@ NAME			=	libunit.a
 CC				=	gcc
 FLAGS			=	-Wall -Werror -Wextra -Ofast
 
-_SRCS			=	test_lst.c
+_SRCS			=	test_lst.c tests_run.c test_stdout.c
 _LIBFT			=	libft.a
 
 SRCS_DIR		=	srcs
@@ -45,11 +45,12 @@ $(LIBFT):
 
 clean:
 		@/bin/rm -f $(OBJS)
-		@echo "libft clean : $(_GREEN)Done$(_END)"
+		@make fclean -C $(LIB_DIR)
+		@echo "libunit clean : $(_GREEN)Done$(_END)"
 
 fclean: clean
 		@/bin/rm -f $(NAME)
-		@echo "libft fclean : $(_GREEN)Done$(_END)"
+		@echo "libunit fclean : $(_GREEN)Done$(_END)"
 
 re:
 		@make fclean
