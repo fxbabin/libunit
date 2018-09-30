@@ -15,8 +15,8 @@ NAME			=	libunit.a
 CC				=	gcc
 FLAGS			=	-Wall -Werror -Wextra -Ofast
 
-_SRCS			=	test_lst.c tests_run.c test_stdout.c test_putstr.c
-					tests-run_wrapper
+_SRCS			=	test_lst.c tests_run.c test_stdout.c test_putstr.c \
+					tests_run_wrapper.c test_putstr_wrapper.c
 
 SRCS_DIR		=	srcs
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(_SRCS))

@@ -34,15 +34,20 @@ void				test_add(t_test **test_lst, char *test_name,
 						int (*test)(void));
 void				tests_del(t_test **test_lst);
 
+void				child_process(t_test *test);
+void				parent_process(t_test *test, int *n_pass);
 void				tests_run(t_test **testlst);
+void				tests_run_wrapper(char *wname, t_test **testlst);
 
 int					get_stdout_fd(int *p_fd);
 char				*get_stdout_buffer(int buff_size, char *buff_out,
 						int stdout_fd, int *p_fd);
 
 void				ut_putstr(char *str);
+void				ut_putnbr(int nb);
 void				ut_putstr_wild(char *str, int width);
 void				ut_putsig(char *test_name, char *col1, char *text);
 void				ut_putscore(int n_pass, int n_tot);
+void				ut_putscore_wrapper(int n_pass, int n_tot);
 
 #endif

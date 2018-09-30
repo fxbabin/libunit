@@ -19,14 +19,14 @@ void    ut_putsig_w(char *col1, char *text)
 	ut_putstr("\e[0;38;255;255;255m");
 }
 
-void	process_status_wrapper(char *test_name, float *nb_pass, int status)
+void	process_status_wrapper(char *test_name, int *nb_pass, int status)
 {
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == 0)
 		{
 			*nb_pass += 1;
-			ut_put(LGREEN, ".");
+			ut_putsig_w(LGREEN, ".");
 		}
 		else if (WEXITSTATUS(status) == SIGALRM)
 			ut_putsig_w(RED, "T");
@@ -46,7 +46,7 @@ void	process_status_wrapper(char *test_name, float *nb_pass, int status)
 	}
 }
 
-void	parent_process_wrapper(float *nb_pass, t_test *test)
+void	parent_process_wrapper(t_test *test, int *nb_pass)
 {
 	int		status;
 
@@ -54,9 +54,9 @@ void	parent_process_wrapper(float *nb_pass, t_test *test)
 	process_status_wrapper(test->name, nb_pass, status);
 }
 
-void	tests_run_wrapper(t_test **testlst)
+void	tests_run_wrapper(char *wname, t_test **testlst)
 {
-	t_test		l;
+	t_test		*l;
 	pid_t		pid;
 	int			n_pass;
 	int			n_tot;
@@ -64,14 +64,14 @@ void	tests_run_wrapper(t_test **testlst)
 	n_pass = 0;
 	n_tot = 0;
 	l = *testlst;
+	ut_putstr_wild(wname, 25);
 	while ((*testlst))
 	{
 		pid = fork();
-		ut_putstr_wild(testlst->name, 25);
 		if (pid == 0)
 			child_process(*testlst);
 		else
-			parent_process(*testlst, &n_pass);
+			parent_process_wrapper(*testlst, &n_pass);
 		++n_tot;
 		*testlst = (*testlst)->next;
 	}
