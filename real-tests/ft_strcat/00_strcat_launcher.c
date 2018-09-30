@@ -21,6 +21,6 @@ void	strcat_launcher(void)
 	test_add(&lst, "test_strcat_simple_ko", &test_strcat_simple_ko);
 	test_add(&lst, "test_strcat_null", &test_strcat_null);
 	test_add(&lst, "test_strcat_buse", &test_strcat_buse);
-	tests_run(&lst);
+	tests_run_wrapper("toto", &lst);
 	tests_del(&lst);
 }

@@ -18,9 +18,9 @@
 # include <signal.h>
 # include <sys/wait.h>
 
-# define LRED "\e[38;2;239;95;89m"
-# define LGREEN "\e[38;2;4;203;89m"
-# define RED "\e[38;2;255;10;10m"
+# define TLRED "\e[38;2;239;95;89m"
+# define TLGREEN "\e[38;2;4;203;89m"
+# define TRED "\e[38;2;255;10;10m"
 
 typedef struct		s_test
 {

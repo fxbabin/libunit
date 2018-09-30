@@ -21,9 +21,9 @@ void	ut_putscore_wrapper(int n_pass, int n_tot)
 		write(1, " ", 1);
 	ut_putstr("[");
 	if (n_pass == n_tot)
-		ut_putstr(LGREEN);
+		ut_putstr(TLGREEN);
 	else
-		ut_putstr(LRED);
+		ut_putstr(TLRED);
 	ut_putnbr(n_pass);
 	ut_putstr(" / ");
 	ut_putnbr(n_tot);

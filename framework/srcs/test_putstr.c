@@ -70,9 +70,9 @@ void	ut_putnbr(int nb)
 void	ut_putscore(int n_pass, int n_tot)
 {
 	if (n_pass == n_tot)
-		ut_putstr(LGREEN);
+		ut_putstr(TLGREEN);
 	else
-		ut_putstr(LRED);
+		ut_putstr(TLRED);
 	ut_putstr("========================>   ");
 	ut_putnbr(n_pass);
 	ut_putstr(" / ");

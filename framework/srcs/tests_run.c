@@ -32,23 +32,23 @@ void	process_status(char *test_name, int status, int *n_pass)
 		if (WEXITSTATUS(status) == 0)
 		{
 			*n_pass += 1;
-			ut_putsig(test_name, LGREEN, "OK");
+			ut_putsig(test_name, TLGREEN, "OK");
 		}
 		else if (WEXITSTATUS(status) == SIGALRM)
-			ut_putsig(test_name, RED, "TIMEOUT");
+			ut_putsig(test_name, TRED, "TIMEOUT");
 		else
-			ut_putsig(test_name, LRED, "KO");
+			ut_putsig(test_name, TLRED, "KO");
 	}
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			ut_putsig(test_name, RED, "SEGV");
+			ut_putsig(test_name, TRED, "SEGV");
 		else if (WTERMSIG(status) == SIGBUS)
-			ut_putsig(test_name, RED, "BUSE");
+			ut_putsig(test_name, TRED, "BUSE");
 		else if (WTERMSIG(status) == SIGABRT)
-			ut_putsig(test_name, RED, "ABORT");
+			ut_putsig(test_name, TRED, "ABORT");
 		else if (WTERMSIG(status) == SIGFPE)
-			ut_putsig(test_name, RED, "FPE");
+			ut_putsig(test_name, TRED, "FPE");
 	}
 }
 

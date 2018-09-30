@@ -17,19 +17,21 @@ CFLAGS			=	-Wall -Werror -Wextra
 
 _SRCS_M			=	main.c
 
-_SRCS_STRCAT	=	ft_strcat.c 00_strcat_launcher.c 01_strcat_simple_1.c \
-					02_strcat_simple_ko.c 03_strcat_null.c 04_strcat_buse.c
+_SRCS_STRCAT	=	tests_ft_strcat.c
 
 _LIBUNIT		=	libunit.a
+_LIBUNIT		=	libft.a
 HEADER_DIR		=	../framework/includes
 HEADER			=	$(HEADER_DIR)/libunit.h
 
 SRCS_DIR		= .
-SRCS_STRCAT		= ft_strcat
+SRCS_STRCAT		= tests
 LIBUNIT_DIR		= ../framework
+LIBFT_DIR		= libft
 SRCS			= $(addprefix $(SRCS_DIR)/, $(_SRCS_M))
 SRCS			+= $(addprefix $(SRCS_STRCAT)/, $(_SRCS_STRCAT))
 LIBUNIT			= $(addprefix $(LIBUNIT_DIR)/, $(_LIBUNIT))
+LIBFT			= $(addprefix $(LIBFT_DIR)/, $(_LIBFT))
 OBJS			= $(SRCS:.c=.o)
 
 #COLORS
@@ -40,15 +42,18 @@ _END=\x1b[0m
 
 all: $(NAME)
 
-$(NAME): $(HEADER) $(LIBUNIT) $(OBJS)
-		@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBUNIT_DIR) -lunit -I $(HEADER_DIR)
+$(NAME): $(HEADER) $(LIBUNIT) $(LIBFT) $(OBJS)
+		@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBUNIT_DIR) -lunit -Llibft -lft  -I $(HEADER_DIR)
 		@echo "$(NAME) : $(_GREEN)Done$(_END)"
 
 $(LIBUNIT):
 		@make -C $(LIBUNIT_DIR)
 
+$(LIBFT):
+		@make -C $(LIBFT_DIR)
+
 %.o : %.c
-		@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER_DIR)
+		@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER_DIR) 
 
 test: $(NAME)
 		@./$(NAME)

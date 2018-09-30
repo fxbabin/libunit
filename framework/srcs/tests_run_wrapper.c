@@ -26,23 +26,23 @@ void	process_status_wrapper(char *test_name, int *nb_pass, int status)
 		if (WEXITSTATUS(status) == 0)
 		{
 			*nb_pass += 1;
-			ut_putsig_w(LGREEN, ".");
+			ut_putsig_w(TLGREEN, ".");
 		}
 		else if (WEXITSTATUS(status) == SIGALRM)
-			ut_putsig_w(RED, "T");
+			ut_putsig_w(TRED, "T");
 		else
-			ut_putsig_w(LRED, "K");
+			ut_putsig_w(TLRED, "K");
 	}
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			ut_putsig_w(RED, "S");
+			ut_putsig_w(TRED, "S");
 		else if (WTERMSIG(status) == SIGBUS)
-			ut_putsig_w(RED, "B");
+			ut_putsig_w(TRED, "B");
 		else if (WTERMSIG(status) == SIGABRT)
-			ut_putsig_w(RED, "A");
+			ut_putsig_w(TRED, "A");
 		else if (WTERMSIG(status) == SIGFPE)
-			ut_putsig_w(RED, "F");
+			ut_putsig_w(TRED, "F");
 	}
 }
 
