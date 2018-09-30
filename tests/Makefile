@@ -22,7 +22,7 @@ HEADER_DIR		=	includes
 HEADER			=	$(HEADER_DIR)/test.h
 
 SRCS_DIR		= .
-LIBUNIT_DIR		= framework
+LIBUNIT_DIR		= ../framework
 SRCS			= $(addprefix $(SRCS_DIR)/, $(_SRCS))
 LIBUNIT			= $(addprefix $(LIBUNIT_DIR)/, $(_LIBUNIT))
 OBJS			= $(SRCS:.c=.o)

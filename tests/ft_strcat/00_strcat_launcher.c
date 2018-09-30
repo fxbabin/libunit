@@ -28,6 +28,7 @@ int     test_putstr(void)
 
 int		test_ok(void)
 {
+    //ft_dprintf(error_fd, "totot");
 	return (0);
 }
 
@@ -100,7 +101,8 @@ int		main(void)
 	test_add(&lst, "test_fpe", &test_fpe);
 	test_add(&lst, "test_timeout", &test_timeout);
 	test_add(&lst, "test_timeout", &test_putstr);
-	tests_run(&lst);
+    
+    tests_run(&lst);
 	
 	tests_del(&lst);
 	/*load_test(&lst, "basic_strcpy_test_ok", &basic_strcpy_test_ok);
