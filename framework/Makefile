@@ -6,7 +6,7 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/09 17:49:24 by fbabin            #+#    #+#              #
-#    Updated: 2018/06/19 16:50:46 by fbabin           ###   ########.fr        #
+#    Updated: 2018/09/30 20:59:40 by fbabin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,11 @@ NAME			=	libunit.a
 CC				=	gcc
 FLAGS			=	-Wall -Werror -Wextra -Ofast
 
-_SRCS			=	test_lst.c tests_run.c test_stdout.c
-_LIBFT			=	libft.a
+_SRCS			=	test_lst.c tests_run.c test_stdout.c test_putstr.c
+					tests-run_wrapper
 
 SRCS_DIR		=	srcs
-LIB_DIR			=	libft
 SRCS			=	$(addprefix $(SRCS_DIR)/, $(_SRCS))
-LIBFT			=	$(addprefix $(LIB_DIR)/, $(_LIBFT))
 OBJS			=	$(SRCS:.c=.o)
 
 
@@ -33,19 +31,15 @@ _END=\x1b[0m
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-		@libtool -static -o $(NAME) $(OBJS) $(LIBFT)
+$(NAME): $(OBJS)
+		@ar rcs $(NAME) $(OBJS)
 		@echo "$(NAME) : $(_GREEN)Done$(_END)"
-
-$(LIBFT):
-		@make -C $(LIB_DIR)
 
 %.o : %.c
 		@$(CC) $(CFLAGS) -c $< -o $@ -I includes/
 
 clean:
 		@/bin/rm -f $(OBJS)
-		@make fclean -C $(LIB_DIR)
 		@echo "libunit clean : $(_GREEN)Done$(_END)"
 
 fclean: clean

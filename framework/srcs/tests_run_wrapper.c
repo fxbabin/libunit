@@ -1,68 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_run.c                                        :+:      :+:    :+:   */
+/*   tests_run_wrapper.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 21:52:16 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 17:17:03 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 18:52:04 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 20:59:33 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-void	exit_timeout(int sig)
+void    ut_putsig_w(char *col1, char *text)
 {
-	(void)sig;
-	exit(SIGALRM);
+	ut_putstr(col1);
+	ut_putstr(text);
+	ut_putstr("\e[0;38;255;255;255m");
 }
 
-void	child_process(t_test *test)
-{
-	signal(SIGALRM, exit_timeout);
-	alarm(1);
-	exit((test->test() == 0) ? 0 : -1);
-}
-
-void	process_status(char *test_name, int status, int *n_pass)
+void	process_status_wrapper(char *test_name, float *nb_pass, int status)
 {
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == 0)
 		{
-			*n_pass += 1;
-			ut_putsig(test_name, LGREEN, "OK");
+			*nb_pass += 1;
+			ut_put(LGREEN, ".");
 		}
 		else if (WEXITSTATUS(status) == SIGALRM)
-			ut_putsig(test_name, RED, "TIMEOUT");
+			ut_putsig_w(RED, "T");
 		else
-			ut_putsig(test_name, LRED, "KO");
+			ut_putsig_w(LRED, "K");
 	}
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			ut_putsig(test_name, RED, "SEGV");
+			ut_putsig_w(RED, "S");
 		else if (WTERMSIG(status) == SIGBUS)
-			ut_putsig(test_name, RED, "BUSE");
+			ut_putsig_w(RED, "B");
 		else if (WTERMSIG(status) == SIGABRT)
-			ut_putsig(test_name, RED, "ABORT");
+			ut_putsig_w(RED, "A");
 		else if (WTERMSIG(status) == SIGFPE)
-			ut_putsig(test_name, RED, "FPE");
+			ut_putsig_w(RED, "F");
 	}
 }
 
-void	parent_process(t_test *test, int *n_pass)
+void	parent_process_wrapper(float *nb_pass, t_test *test)
 {
 	int		status;
 
 	wait(&status);
-	process_status(test->name, status, n_pass);
+	process_status_wrapper(test->name, nb_pass, status);
 }
 
-void	tests_run(t_test **testlst)
+void	tests_run_wrapper(t_test **testlst)
 {
-	t_test		*l;
+	t_test		l;
 	pid_t		pid;
 	int			n_pass;
 	int			n_tot;
@@ -73,6 +67,7 @@ void	tests_run(t_test **testlst)
 	while ((*testlst))
 	{
 		pid = fork();
+		ut_putstr_wild(testlst->name, 25);
 		if (pid == 0)
 			child_process(*testlst);
 		else
@@ -80,6 +75,6 @@ void	tests_run(t_test **testlst)
 		++n_tot;
 		*testlst = (*testlst)->next;
 	}
-	ut_putscore(n_pass, n_tot);
+	ut_putscore_wrapper(n_pass, n_tot);
 	*testlst = l;
 }

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_strcat_buse.c                                   :+:      :+:    :+:   */
+/*   strcat_test.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 17:00:58 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 17:05:18 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:21:12 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 17:01:47 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strcat_test.h"
+#ifndef STRCAT_TEST_H
+# define STRCAT_TEST_H
 
-int		test_strcat_buse(void)
-{
-	char	*s1;
-	char	*s2;
+#include <string.h>
+#include "libunit.h"
 
-	s1 = "ss";
-	s2 = "totot";
-	if (strcmp(ft_strcat(s1, s2), "tototat") == 0)
-		return (0);
-	else
-		return (-1);
-}
+char	*ft_strcat(char *s1, const char *s2);
+void	strcat_launcher(void);
+int		test_strcat_simple_1(void);
+int		test_strcat_simple_ko(void);
+int		test_strcat_null(void);
+int		test_strcat_buse(void);
+
+#endif

@@ -6,18 +6,17 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:52:16 by fbabin            #+#    #+#             */
-/*   Updated: 2018/04/16 22:28:13 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/09/30 18:49:38 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/includes/mem.h"
 #include "libunit.h"
 
 t_test		*test_create(char *test_name, int (*test)(void))
 {
 	t_test	*t;
 
-	if (!(t = (t_test*)ft_memalloc(sizeof(t_test))))
+	if (!(t = (t_test*)malloc(sizeof(t_test))))
 		return (NULL);
 	t->name = test_name;
 	t->test = test;
@@ -42,7 +41,7 @@ void		test_add(t_test **test_lst, char *test_name, int (*test)(void))
 		*test_lst = test_create(test_name, test);
 }
 
-void	tests_del(t_test **test_lst)
+void		tests_del(t_test **test_lst)
 {
 	t_test		*tmp;
 
