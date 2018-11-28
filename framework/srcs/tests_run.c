@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests_run.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 21:52:16 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 17:17:03 by fbabin           ###   ########.fr       */
+/*   Created: 2018/11/28 19:44:02 by fbabin            #+#    #+#             */
+/*   Updated: 2018/11/28 23:12:05 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	exit_timeout(int sig)
 
 void	child_process(t_test *test)
 {
+	if (!test)
+		exit(ut_putstr_err("child_process : NULL parameter\n"));
 	signal(SIGALRM, exit_timeout);
 	alarm(1);
 	exit((test->test() == 0) ? 0 : -1);
@@ -27,6 +29,8 @@ void	child_process(t_test *test)
 
 void	process_status(char *test_name, int status, int *n_pass)
 {
+	if (!test_name || !n_pass)
+		exit(ut_putstr_err("process_status : NULL parameter\n"));
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == 0)
@@ -73,7 +77,9 @@ void	tests_run(t_test **testlst)
 	while ((*testlst))
 	{
 		pid = fork();
-		if (pid == 0)
+		if (pid < 0)
+			exit(ut_putstr_err("test_run : fork returned a wrong pid\n"));
+		else if (pid == 0)
 			child_process(*testlst);
 		else
 			parent_process(*testlst, &n_pass);

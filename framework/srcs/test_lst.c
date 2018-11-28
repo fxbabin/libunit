@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstcreate.c                                     :+:      :+:    :+:   */
+/*   test_lst.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 21:52:16 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 18:49:38 by fbabin           ###   ########.fr       */
+/*   Created: 2018/11/28 19:42:47 by fbabin            #+#    #+#             */
+/*   Updated: 2018/11/28 22:49:19 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ t_test		*test_create(char *test_name, int (*test)(void))
 {
 	t_test	*t;
 
+	if (!test_name || !test)
+		exit(ut_putstr_err("test_create : NULL parameter\n"));
 	if (!(t = (t_test*)malloc(sizeof(t_test))))
-		return (NULL);
+		exit(ut_putstr_err("test_create : malloc failed\n"));
 	t->name = test_name;
 	t->test = test;
 	t->next = NULL;
@@ -28,8 +30,8 @@ void		test_add(t_test **test_lst, char *test_name, int (*test)(void))
 {
 	t_test		*tmp;
 
-	if (!test_lst)
-		return ;
+	if (!test_lst || !test_name || !test)
+		exit(ut_putstr_err("test_add : NULL parameter\n"));
 	if (*test_lst)
 	{
 		tmp = *test_lst;
@@ -46,7 +48,7 @@ void		tests_del(t_test **test_lst)
 	t_test		*tmp;
 
 	if (!test_lst)
-		return ;
+		exit(ut_putstr_err("test_del : NULL parameter\n"));
 	while (*test_lst)
 	{
 		tmp = (*test_lst)->next;

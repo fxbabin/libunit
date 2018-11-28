@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 19:59:24 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/28 23:50:15 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:13:30 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/14 14:11:38 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strcat/strcat_test.h"
+#include "io.h"
 
-int		main(void)
+void	ft_putstr(const char *s)
 {
-	strcat_launcher();
-	return (0);
+	int		i;
+
+	i = -1;
+	if (!s)
+	{
+		ft_putstr("(null)\n");
+		return ;
+	}
+	while (s[++i])
+		;
+	write(1, s, i);
 }

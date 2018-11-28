@@ -5,22 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 18:52:04 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 20:59:33 by fbabin           ###   ########.fr       */
+/*   Created: 2018/11/28 19:44:22 by fbabin            #+#    #+#             */
+/*   Updated: 2018/11/28 23:11:20 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-void    ut_putsig_w(char *col1, char *text)
+void	ut_putsig_w(char *col1, char *text)
 {
 	ut_putstr(col1);
 	ut_putstr(text);
-	ut_putstr("\e[0;38;255;255;255m");
+	ut_putstr(TRESET);
 }
 
 void	process_status_wrapper(char *test_name, int *nb_pass, int status)
 {
+	if (!test_name || !nb_pass)
+		exit(ut_putstr_err("process_status : NULL parameter\n"));
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == 0)
@@ -50,6 +52,8 @@ void	parent_process_wrapper(t_test *test, int *nb_pass)
 {
 	int		status;
 
+	if (!test || !nb_pass)
+		exit(ut_putstr_err("parent_process_wrapper : NULL parameter\n"));
 	wait(&status);
 	process_status_wrapper(test->name, nb_pass, status);
 }
@@ -68,7 +72,9 @@ void	tests_run_wrapper(char *wname, t_test **testlst)
 	while ((*testlst))
 	{
 		pid = fork();
-		if (pid == 0)
+		if (pid < 0)
+			exit(ut_putstr_err("test_run_wrapper : fork returned wrong pid\n"));
+		else if (pid == 0)
 			child_process(*testlst);
 		else
 			parent_process_wrapper(*testlst, &n_pass);

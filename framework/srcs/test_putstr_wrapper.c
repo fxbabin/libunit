@@ -5,12 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 15:14:39 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 18:50:46 by fbabin           ###   ########.fr       */
+/*   Created: 2018/11/28 19:43:10 by fbabin            #+#    #+#             */
+/*   Updated: 2018/11/28 22:11:17 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
+
+int		ut_putstr_err(char *str)
+{
+	ut_putstr(TLRED);
+	ut_putstr("Error :: ");
+	ut_putstr(TRESET);
+	ut_putstr(str);
+	return (-1);
+}
 
 void	ut_putscore_wrapper(int n_pass, int n_tot)
 {
@@ -27,5 +36,6 @@ void	ut_putscore_wrapper(int n_pass, int n_tot)
 	ut_putnbr(n_pass);
 	ut_putstr(" / ");
 	ut_putnbr(n_tot);
-	ut_putstr("\e[0;38;255;255;255m]\n");
+	ut_putstr(TRESET);
+	ut_putstr("]\n");
 }

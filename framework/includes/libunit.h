@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libunit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 21:52:16 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 18:35:25 by fbabin           ###   ########.fr       */
+/*   Created: 2018/11/28 19:49:37 by fbabin            #+#    #+#             */
+/*   Updated: 2018/11/28 21:41:08 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # include <signal.h>
 # include <sys/wait.h>
 
-# define TLRED "\e[38;2;239;95;89m"
-# define TLGREEN "\e[38;2;4;203;89m"
-# define TRED "\e[38;2;255;10;10m"
+# define TLRED		"\e[38;2;239;95;89m"
+# define TLGREEN	"\e[38;2;4;203;89m"
+# define TRED		"\e[38;2;255;10;10m"
+# define TRESET		"\e[0;38;255;255;255m"
 
 typedef struct		s_test
 {
@@ -44,6 +45,7 @@ char				*get_stdout_buffer(int buff_size, char *buff_out,
 						int stdout_fd, int *p_fd);
 
 void				ut_putstr(char *str);
+int 				ut_putstr_err(char *str);
 void				ut_putnbr(int nb);
 void				ut_putstr_wild(char *str, int width);
 void				ut_putsig(char *test_name, char *col1, char *text);

@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   02_strcat_simple_ko.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 19:59:24 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/28 23:50:15 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:51:41 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 16:52:47 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strcat/strcat_test.h"
+#include "strcat_test.h"
 
-int		main(void)
+int		test_strcat_simple_ko(void)
 {
-	strcat_launcher();
-	return (0);
+	char	buff1[100];
+
+	strcpy((char*)&buff1, "toto");
+	if (strcmp(ft_strcat(buff1, "tata"), "tototat") == 0)
+		return (0);
+	else
+		return (-1);
 }

@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   00_putstr_launcher.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 19:59:24 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/28 23:50:15 by fbabin           ###   ########.fr       */
+/*   Created: 2018/11/28 23:39:31 by fbabin            #+#    #+#             */
+/*   Updated: 2018/11/28 23:45:41 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strcat/strcat_test.h"
+#include "putstr_test.h"
 
-int		main(void)
+void	putstr_launcher(void)
 {
-	strcat_launcher();
-	return (0);
+	t_test		*lst;
+
+	lst = NULL;
+	test_add(&lst, "test_putstr_simple_1", &test_putstr_simple_1);
+	test_add(&lst, "test_putstr_null", &test_putstr_null);
+	test_add(&lst, "test_putstr_zeros", &test_putstr_zeros);
+	tests_run(&lst);
+	tests_del(&lst);
 }

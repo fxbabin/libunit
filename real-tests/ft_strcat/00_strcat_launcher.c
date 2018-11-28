@@ -6,7 +6,7 @@
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/30 16:16:03 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 17:02:02 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/11/28 23:35:57 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	strcat_launcher(void)
 	test_add(&lst, "test_strcat_simple_ko", &test_strcat_simple_ko);
 	test_add(&lst, "test_strcat_null", &test_strcat_null);
 	test_add(&lst, "test_strcat_buse", &test_strcat_buse);
-	tests_run_wrapper("toto", &lst);
+	tests_run_wrapper("ddd", &lst);
 	tests_del(&lst);
 }
