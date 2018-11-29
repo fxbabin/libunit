@@ -13,11 +13,15 @@
 #include "putstr_test.h"
 
 int		test_putstr_simple_1(void)
-{
+{	
+	int		stdout_fd;
+	int		p_fd[2];
 	char	buff1[100];
 
-	strcpy((char*)&buff1, "toto");
-	if (strcmp(ft_putstrcat(buff1, "tata"), "tototata") == 0)
+	stdout_fd = get_stdout_fd(p_fd);
+	ft_putstr("hello");
+	get_stdout_buffer(100, buff1, stdout_fd, p_fd);
+	if (strcmp(buff1, "hello") == 0)
 		return (0);
 	else
 		return (-1);

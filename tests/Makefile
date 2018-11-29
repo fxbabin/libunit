@@ -20,15 +20,20 @@ _SRCS_M			=	main.c
 _SRCS_STRCAT	=	ft_strcat.c 00_strcat_launcher.c 01_strcat_simple_1.c \
 					02_strcat_simple_ko.c 03_strcat_null.c 04_strcat_buse.c
 
+_SRCS_PUTSTR	=	ft_putstr.c 00_putstr_launcher.c 01_putstr_simple_1.c \
+					02_putstr_null.c 03_putstr_zeros.c 
+
 _LIBUNIT		=	libunit.a
 HEADER_DIR		=	../framework/includes
 HEADER			=	$(HEADER_DIR)/libunit.h
 
 SRCS_DIR		= .
 SRCS_STRCAT		= ft_strcat
+SRCS_PUTSTR		= ft_putstr
 LIBUNIT_DIR		= ../framework
 SRCS			= $(addprefix $(SRCS_DIR)/, $(_SRCS_M))
 SRCS			+= $(addprefix $(SRCS_STRCAT)/, $(_SRCS_STRCAT))
+SRCS			+= $(addprefix $(SRCS_PUTSTR)/, $(_SRCS_PUTSTR))
 LIBUNIT			= $(addprefix $(LIBUNIT_DIR)/, $(_LIBUNIT))
 OBJS			= $(SRCS:.c=.o)
 

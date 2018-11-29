@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "io.h"
+#include "putstr_test.h"
 
 void	ft_putstr(const char *s)
 {
@@ -19,7 +19,7 @@ void	ft_putstr(const char *s)
 	i = -1;
 	if (!s)
 	{
-		ft_putstr("(null)\n");
+		ft_putstr("(null)");
 		return ;
 	}
 	while (s[++i])

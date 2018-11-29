@@ -16,7 +16,7 @@
 #include <string.h>
 #include "libunit.h"
 
-void	ft_putstr(char *s1);
+void	ft_putstr(const char *s1);
 void	putstr_launcher(void);
 int		test_putstr_simple_1(void);
 int		test_putstr_null(void);

@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "ft_strcat/strcat_test.h"
+#include "ft_putstr/putstr_test.h"
 
 int		main(void)
 {
 	strcat_launcher();
+	putstr_launcher();
 	return (0);
 }
