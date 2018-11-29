@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   01_memset_simple_1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 22:13:30 by fbabin            #+#    #+#             */
-/*   Updated: 2017/11/14 14:11:38 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:18:59 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 16:23:45 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "putstr_test.h"
+#include "memset_test.h"
 
-void	ft_putstr(const char *s)
+int		test_memset_simple_1(void)
 {
-	int		i;
+	char	buff1[100];
+	char	buff2[100];
 
-	i = -1;
-	if (!s)
-	{
-		ft_putstr("(null)");
-		return ;
-	}
-	while (s[++i])
-		;
-	write(1, s, i);
+	memset((char*)&buff1, 'c', 3);
+	ft_memset((char*)&buff2, 'c', 3);
+	if (strcmp(buff1, buff2) == 0)
+		return (0);
+	else
+		return (-1);
 }

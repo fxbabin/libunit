@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_putstr_simple_1.c                               :+:      :+:    :+:   */
+/*   memset_test.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 23:46:06 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/28 23:48:57 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:21:12 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 17:01:47 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "putstr_test.h"
+#ifndef MEMSET_TEST_H
+# define MEMSET_TEST_H
 
-int		test_putstr_simple_1(void)
-{	
-	int		stdout_fd;
-	int		p_fd[2];
-	char	buff1[100];
+#include <string.h>
+#include "libunit.h"
+#include "libft.h"
 
-	stdout_fd = get_stdout_fd(p_fd);
-	ft_putstr("hello");
-	get_stdout_buffer(100, buff1, stdout_fd, p_fd);
-	if (strcmp(buff1, "hello") == 0)
-		return (0);
-	else
-		return (-1);
-}
+void	memset_launcher(void);
+int		test_memset_simple_1(void);
+int		test_memset_tab(void);
+int		test_memset_newline(void);
+int		test_memset_zero(void);
+int		test_memset_space(void);
+int		test_memset_null(void);
+
+
+#endif

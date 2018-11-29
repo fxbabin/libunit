@@ -10,10 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strcat/strcat_test.h"
+#include "libft.h"
+#include "ft_memset/memset_test.h"
+#include "ft_bzero/bzero_test.h"
+#include "ft_memcpy/memcpy_test.h"
 
 int		main(void)
 {
-	strcat_launcher();
+	memset_launcher();
+	bzero_launcher();
+	memcpy_launcher();
 	return (0);
 }

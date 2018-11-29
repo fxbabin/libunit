@@ -6,7 +6,7 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/20 22:51:42 by fbabin            #+#    #+#              #
-#    Updated: 2018/09/30 17:02:20 by fbabin           ###   ########.fr        #
+#    Updated: 2018/11/29 19:57:29 by fbabin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,6 @@ _SRCS_M			=	main.c
 
 _SRCS_STRCAT	=	ft_strcat.c 00_strcat_launcher.c 01_strcat_simple_1.c \
 					02_strcat_simple_ko.c 03_strcat_null.c 04_strcat_buse.c
-
-_SRCS_PUTSTR	=	ft_putstr.c 00_putstr_launcher.c 01_putstr_simple_1.c \
-					02_putstr_null.c 03_putstr_zeros.c 
 
 _LIBUNIT		=	libunit.a
 HEADER_DIR		=	../framework/includes

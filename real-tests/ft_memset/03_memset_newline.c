@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_strcat_simple_1.c                               :+:      :+:    :+:   */
+/*   03_memset_newline.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strcat_test.h"
+#include "memset_test.h"
 
-int		test_strcat_simple_1(void)
+int		test_memset_newline(void)
 {
 	char	buff1[100];
+	char	buff2[100];
 
-	strcpy((char*)&buff1, "toto");
-	if (strcmp(ft_strcat(buff1, "tata"), "tototata") == 0)
+	memset((char*)&buff1, '\n', 3);
+	ft_memset((char*)&buff2, '\n', 3);
+	if (strcmp(buff1, buff2) == 0)
 		return (0);
 	else
 		return (-1);

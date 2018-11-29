@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   01_bzero_simple_1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 16:44:15 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 16:48:21 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:18:59 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 16:23:45 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strcat_test.h"
+#include "bzero_test.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+int		test_bzero_simple_1(void)
 {
-	char	*tmp;
+	char	buff1[100];
+	char	buff2[100];
 
-	tmp = s1;
-	while (*s1 && *(s1++))
-		;
-	while (*s2 && (*s1++ = *s2++))
-		;
-	*s1 = '\0';
-	return (tmp);
+	buff1[0] = 'A';
+	buff2[0] = 'A';
+	bzero(buff1, 3);
+	ft_bzero(buff2, 3);
+	if (strcmp(buff1, buff2) == 0)
+		return (0);
+	else
+		return (-1);
 }

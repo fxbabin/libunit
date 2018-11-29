@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   00_strcat_launcher.c                               :+:      :+:    :+:   */
+/*   04_memcpy_null_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 16:16:03 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/28 23:35:57 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:18:59 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 16:23:45 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strcat_test.h"
+#include "memcpy_test.h"
 
-void	strcat_launcher(void)
+int		test_memcpy_null_2(void)
 {
-	t_test		*lst;
+	char	buff1[100];
+	char	buff2[100];
 
-	lst = NULL;
-	test_add(&lst, "test_strcat_simple_1", &test_strcat_simple_1);
-	test_add(&lst, "test_strcat_simple_ko", &test_strcat_simple_ko);
-	test_add(&lst, "test_strcat_null", &test_strcat_null);
-	test_add(&lst, "test_strcat_buse", &test_strcat_buse);
-	tests_run_wrapper("ddd", &lst);
-	tests_del(&lst);
+	memset((char*)buff1, '\0', 50);
+	memset((char*)buff2, '\0', 50);
+	memcpy((char*)buff1, NULL, 0);
+	ft_memcpy((char*)buff2, NULL, 0);
+	if (strcmp(buff1, buff2) == 0)
+		return (0);
+	else
+		return (-1);
 }

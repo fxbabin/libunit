@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   03_strcat_null.c                                   :+:      :+:    :+:   */
+/*   02_memcpy_simple_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 16:57:14 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 16:57:48 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:18:59 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 16:23:45 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strcat_test.h"
+#include "memcpy_test.h"
 
-int		test_strcat_null(void)
+int		test_memcpy_simple_2(void)
 {
 	char	buff1[100];
+	char	buff2[100];
 
-	strcpy((char*)&buff1, "toto");
-	if (strcmp(ft_strcat(buff1, NULL), "toto") == 0)
+	memcpy((char*)&buff1, "ta", 10);
+	ft_memcpy((char*)&buff2, "ta", 10);
+	if (strcmp(buff1, buff2) == 0)
 		return (0);
 	else
 		return (-1);
-	return (0);
 }

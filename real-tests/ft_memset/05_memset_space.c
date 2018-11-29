@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putstr_test.h                                      :+:      :+:    :+:   */
+/*   05_memset_space.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 23:43:33 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/28 23:44:39 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:18:59 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 16:23:45 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUTSTR_TEST_H
-# define PUTSTR_TEST_H
+#include "memset_test.h"
 
-#include <string.h>
-#include "libunit.h"
+int		test_memset_space(void)
+{
+	char	buff1[100];
+	char	buff2[100];
 
-void	ft_putstr(const char *s1);
-void	putstr_launcher(void);
-int		test_putstr_simple_1(void);
-int		test_putstr_null(void);
-int		test_putstr_zeros(void);
-
-#endif
+	memset((char*)&buff1, ' ', 3);
+	ft_memset((char*)&buff2, ' ', 3);
+	if (strcmp(buff1, buff2) == 0)
+		return (0);
+	else
+		return (-1);
+}

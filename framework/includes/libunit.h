@@ -6,7 +6,7 @@
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 19:49:37 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/28 21:41:08 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/11/29 18:59:24 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char				*get_stdout_buffer(int buff_size, char *buff_out,
 						int stdout_fd, int *p_fd);
 
 void				ut_putstr(char *str);
-int 				ut_putstr_err(char *str);
+int					ut_putstr_err(char *str);
 void				ut_putnbr(int nb);
 void				ut_putstr_wild(char *str, int width);
 void				ut_putsig(char *test_name, char *col1, char *text);
