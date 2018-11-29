@@ -25,6 +25,10 @@ _SRCS_BZERO	    =   00_bzero_launcher.c 01_bzero_simple_1.c 02_bzero_zero.c 03_b
 
 _SRCS_MEMCPY	=   00_memcpy_launcher.c 01_memcpy_simple_1.c 02_memcpy_simple_2.c 03_memcpy_null_1.c   04_memcpy_null_2.c
 
+_SRCS_PUTSTR    =   00_putstr_launcher.c 01_putstr_simple_1.c 02_putstr_null.c 03_putstr_zeros.c
+
+_SRCS_PUTNBR    =   00_putnbr_launcher.c 01_putnbr_int_min.c 02_putnbr_m_20.c 03_putnbr_zero.c 04_putnbr_one.c 05_putnbr_p_20.c 06_putnbr_int_max.c
+
 _LIBUNIT		=	libunit.a
 _LIBFT			=	libft.a
 HEADER_DIR		=	../framework/includes
@@ -37,12 +41,16 @@ SRCS_DIR		= .
 SRCS_MEMSET		= ft_memset
 SRCS_BZERO		= ft_bzero
 SRCS_MEMCPY		= ft_memcpy
+SRCS_PUTSTR     = ft_putstr
+SRCS_PUTNBR     = ft_putnbr
 LIBUNIT_DIR		= ../framework
 LIBFT_DIR		= libft
 SRCS			= $(addprefix $(SRCS_DIR)/, $(_SRCS_M))
 SRCS			+= $(addprefix $(SRCS_MEMSET)/, $(_SRCS_MEMSET))
 SRCS			+= $(addprefix $(SRCS_BZERO)/, $(_SRCS_BZERO))
 SRCS			+= $(addprefix $(SRCS_MEMCPY)/, $(_SRCS_MEMCPY))
+SRCS			+= $(addprefix $(SRCS_PUTSTR)/, $(_SRCS_PUTSTR))
+SRCS			+= $(addprefix $(SRCS_PUTNBR)/, $(_SRCS_PUTNBR))
 LIBUNIT			= $(addprefix $(LIBUNIT_DIR)/, $(_LIBUNIT))
 LIBFT			= $(addprefix $(LIBFT_DIR)/, $(_LIBFT))
 OBJS			= $(SRCS:.c=.o)

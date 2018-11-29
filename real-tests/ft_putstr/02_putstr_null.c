@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strcat_test.h                                      :+:      :+:    :+:   */
+/*   02_strcat_simple_ko.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 16:21:12 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/29 23:42:00 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:51:41 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 16:52:47 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRCAT_TEST_H
-# define STRCAT_TEST_H
+#include "putstr_test.h"
 
-# include <string.h>
-# include "libunit.h"
+int		test_putstr_null(void)
+{
+	int		stdout_fd;
+	int		p_fd[2];
+	char	buff1[100];
 
-char	*ft_strcat(char *s1, const char *s2);
-void	strcat_launcher(void);
-int		test_strcat_simple_1(void);
-int		test_strcat_simple_ko(void);
-int		test_strcat_null(void);
-int		test_strcat_buse(void);
-
-#endif
+	stdout_fd = get_stdout_fd(p_fd);
+	ft_putstr(NULL);
+	get_stdout_buffer(100, buff1, stdout_fd, p_fd);
+	if (strcmp(buff1, "(null)") == 0)
+		return (0);
+	else
+		return (-1);
+}

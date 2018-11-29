@@ -14,11 +14,15 @@
 #include "ft_memset/memset_test.h"
 #include "ft_bzero/bzero_test.h"
 #include "ft_memcpy/memcpy_test.h"
+#include "ft_putstr/putstr_test.h"
+#include "ft_putnbr/putnbr_test.h"
 
 int		main(void)
 {
 	memset_launcher();
 	bzero_launcher();
 	memcpy_launcher();
+	putstr_launcher();
+	putnbr_launcher();
 	return (0);
 }

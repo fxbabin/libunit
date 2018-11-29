@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:28:56 by fbabin            #+#    #+#             */
-/*   Updated: 2018/07/08 22:54:58 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/11/29 23:39:54 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mem.h"
 #include "str.h"
 
-int		ft_llcount(long long nb)
+int				ft_llcount(long long nb)
 {
 	int		i;
 
