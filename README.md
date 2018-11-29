@@ -1,3 +1,3 @@
 # libunit
 
-![Screenshot](tests.png)
+![Screenshot](real_tests.png)
