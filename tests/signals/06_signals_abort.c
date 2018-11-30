@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   04_signals_abort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 16:44:15 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 16:48:21 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 17:00:58 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 17:05:18 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strcat_test.h"
+#include "signals_test.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+int		test_signals_abort(void)
 {
-	char	*tmp;
-
-	tmp = s1;
-	while (*s1 && *(s1++))
-		;
-	while (*s2 && (*s1++ = *s2++))
-		;
-	*s1 = '\0';
-	return (tmp);
+	abort();
+	if (1)
+		return (0);
+	else
+		return (-1);
 }

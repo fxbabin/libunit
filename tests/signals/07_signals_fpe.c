@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strcat_test.h                                      :+:      :+:    :+:   */
+/*   04_signals_fpe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 16:21:12 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/29 23:42:00 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 17:00:58 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 17:05:18 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRCAT_TEST_H
-# define STRCAT_TEST_H
+#include "signals_test.h"
 
-# include <string.h>
-# include "libunit.h"
+int		test_signals_fpe(void)
+{
+	int r1,r2,r3;
+    float rp, rs;
+ 
+    r1 = 2000;
+    r2 = 1500;
+    r3 = 750;
 
-char	*ft_strcat(char *s1, const char *s2);
-void	strcat_launcher(void);
-int		test_strcat_simple_1(void);
-int		test_strcat_simple_ko(void);
-int		test_strcat_null(void);
-int		test_strcat_buse(void);
-
-#endif
+    rs = r1 + r2 + r3;
+    rp = 1/((1/r1)+(1/r2)+(1/r3));
+	return (0);
+}

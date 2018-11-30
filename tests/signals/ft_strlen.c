@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   03_strcat_null.c                                   :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 16:57:14 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 16:57:48 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:19:48 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/08 22:19:52 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strcat_test.h"
+#include "signals_test.h"
 
-int		test_strcat_null(void)
+size_t	ft_strlen(const char *s)
 {
-	char	buff1[100];
+	size_t	i;
 
-	strcpy((char*)&buff1, "toto");
-	if (strcmp(ft_strcat(buff1, NULL), "toto") == 0)
-		return (0);
-	else
-		return (-1);
-	return (0);
+	i = -1;
+	while (s[++i])
+		;
+	return (i);
 }

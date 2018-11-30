@@ -10,27 +10,28 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	test_strcat
+NAME			=	test_signals
 
 CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra
 
 _SRCS_M			=	main.c
 
-_SRCS_STRCAT	=	ft_strcat.c 00_strcat_launcher.c 01_strcat_simple_1.c \
-					02_strcat_simple_ko.c 03_strcat_null.c 04_strcat_buse.c
+_SRCS_SIGNALS  	=	00_signals_launcher.c 03_signals_print_ok.c \
+					06_signals_abort.c ft_strcat.c 01_signals_ok.c \
+					04_signals_print_ko.c 07_signals_fpe.c 02_signals_ko.c \
+					05_signals_buse.c 08_signals_timeout.c ft_putstr.c \
+					09_signals_segv.c ft_strlen.c
 
 _LIBUNIT		=	libunit.a
 HEADER_DIR		=	../framework/includes
 HEADER			=	$(HEADER_DIR)/libunit.h
 
 SRCS_DIR		= .
-SRCS_STRCAT		= ft_strcat
-SRCS_PUTSTR		= ft_putstr
+SRCS_SIGNALS	= signals
 LIBUNIT_DIR		= ../framework
 SRCS			= $(addprefix $(SRCS_DIR)/, $(_SRCS_M))
-SRCS			+= $(addprefix $(SRCS_STRCAT)/, $(_SRCS_STRCAT))
-SRCS			+= $(addprefix $(SRCS_PUTSTR)/, $(_SRCS_PUTSTR))
+SRCS			+= $(addprefix $(SRCS_SIGNALS)/, $(_SRCS_SIGNALS))
 LIBUNIT			= $(addprefix $(LIBUNIT_DIR)/, $(_LIBUNIT))
 OBJS			= $(SRCS:.c=.o)
 

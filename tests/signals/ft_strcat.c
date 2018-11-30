@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 19:59:24 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/29 19:57:41 by fbabin           ###   ########.fr       */
+/*   Created: 2018/09/30 16:44:15 by fbabin            #+#    #+#             */
+/*   Updated: 2018/09/30 16:48:21 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signals/signals_test.h"
+#include "signals_test.h"
 
-int		main(void)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	signals_launcher();
-	return (0);
+	char	*tmp;
+
+	tmp = s1;
+	while (*s1 && *(s1++))
+		;
+	while (*s2 && (*s1++ = *s2++))
+		;
+	*s1 = '\0';
+	return (tmp);
 }

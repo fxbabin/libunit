@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_strcat_buse.c                                   :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/30 17:00:58 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 17:05:18 by fbabin           ###   ########.fr       */
+/*   Created: 2017/11/08 22:13:30 by fbabin            #+#    #+#             */
+/*   Updated: 2017/11/14 14:11:38 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "strcat_test.h"
+#include "signals_test.h"
 
-int		test_strcat_buse(void)
+void	ft_putstr(const char *s)
 {
-	char	*s1;
-	char	*s2;
+	int		i;
 
-	s1 = "ss";
-	s2 = "totot";
-	if (strcmp(ft_strcat(s1, s2), "tototat") == 0)
-		return (0);
-	else
-		return (-1);
+	i = -1;
+	if (!s)
+	{
+		ft_putstr("(null)");
+		return ;
+	}
+	while (s[++i])
+		;
+	write(1, s, i);
 }
