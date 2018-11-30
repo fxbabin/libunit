@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals_test.h                                      :+:      :+:    :+:   */
+/*   signals_test.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/30 16:21:12 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/29 23:42:00 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/12/01 00:30:47 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libunit.h"
 
 size_t	ft_strlen(const char *s);
-void    ft_putstr(const char *s);
+void	ft_putstr(const char *s);
 char	*ft_strcat(char *s1, const char *s2);
 void	signals_launcher(void);
 int		test_signals_ok(void);
