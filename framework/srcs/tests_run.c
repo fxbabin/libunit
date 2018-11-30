@@ -12,80 +12,100 @@
 
 #include "libunit.h"
 
+/*
+** Exit the test if the timeout alarm ring
+*/
+
 void	exit_timeout(int sig)
 {
 	(void)sig;
 	exit(SIGALRM);
 }
 
-void	child_process(t_test *test)
+/*
+** Run the test in the child process
+*/
+
+void	child_process(t_test_list *test_list)
 {
-	if (!test)
-		exit(ut_putstr_err("child_process : NULL parameter\n"));
+	if (!test_list)
+		exit(ut_putstr_error("child_process : NULL parameter\n"));
 	signal(SIGALRM, exit_timeout);
-	alarm(T_TIMEOUT);
-	exit((test->test() == 0) ? 0 : -1);
+	alarm(T_TIMEOUT_DELAY);
+	exit((test_list->test_function() == 0) ? 0 : -1);
 }
 
-void	process_status(char *test_name, int status, int *n_pass)
+/*
+** Write the result of a test depending on the test signal
+*/
+
+void	process_status(char *test_name, int status, int *tests_passed)
 {
-	if (!test_name || !n_pass)
-		exit(ut_putstr_err("process_status : NULL parameter\n"));
+	if (!test_name || !tests_passed)
+		exit(ut_putstr_error("process_status : NULL parameter\n"));
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == 0)
 		{
-			*n_pass += 1;
-			ut_putsig(test_name, TLGREEN, "OK");
+			*tests_passed += 1;
+			ut_puttest_result(test_name, T_LGREEN, "OK");
 		}
 		else if (WEXITSTATUS(status) == SIGALRM)
-			ut_putsig(test_name, TRED, "TIMEOUT");
+			ut_puttest_result(test_name, T_RED, "TIMEOUT");
 		else
-			ut_putsig(test_name, TLRED, "KO");
+			ut_puttest_result(test_name, T_LRED, "KO");
 	}
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			ut_putsig(test_name, TRED, "SEGV");
+			ut_puttest_result(test_name, T_RED, "SEGV");
 		else if (WTERMSIG(status) == SIGBUS)
-			ut_putsig(test_name, TRED, "BUSE");
+			ut_puttest_result(test_name, T_RED, "BUSE");
 		else if (WTERMSIG(status) == SIGABRT)
-			ut_putsig(test_name, TRED, "ABORT");
+			ut_puttest_result(test_name, T_RED, "ABORT");
 		else if (WTERMSIG(status) == SIGFPE)
-			ut_putsig(test_name, TRED, "FPE");
+			ut_puttest_result(test_name, T_RED, "FPE");
 	}
 }
 
-void	parent_process(t_test *test, int *n_pass)
+/*
+** Run the parent process which waits for child status
+*/
+
+void	parent_process(t_test_list *test, int *tests_passed)
 {
 	int		status;
 
 	wait(&status);
-	process_status(test->name, status, n_pass);
+	process_status(test->test_name, status, tests_passed);
 }
 
-void	tests_run(t_test **testlst)
-{
-	t_test		*l;
-	pid_t		pid;
-	int			n_pass;
-	int			n_tot;
+/*
+** Run all the tests in the test list
+*/
 
-	n_pass = 0;
-	n_tot = 0;
+void	test_list_run(t_test_list **testlst)
+{
+	t_test_list		*l;
+	pid_t			pid;
+	int				tests_passed;
+	int				tests_total;
+
+	tests_passed = 0;
+	tests_total = 0;
 	l = *testlst;
 	while ((*testlst))
 	{
 		pid = fork();
 		if (pid < 0)
-			exit(ut_putstr_err("test_run : fork returned a wrong pid\n"));
+			exit(ut_putstr_error("test_run : fork returned a wrong pid\n"));
 		else if (pid == 0)
 			child_process(*testlst);
 		else
-			parent_process(*testlst, &n_pass);
-		++n_tot;
+			parent_process(*testlst, &tests_passed);
+		++tests_total;
 		*testlst = (*testlst)->next;
 	}
-	ut_putscore(n_pass, n_tot);
+	ut_putscore(tests_passed, tests_total);
 	*testlst = l;
 }

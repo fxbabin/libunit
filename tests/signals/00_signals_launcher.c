@@ -14,18 +14,18 @@
 
 void	signals_launcher(void)
 {
-	t_test		*lst;
+	t_test_list		*test_list;
 
-	lst = NULL;
-	test_add(&lst, "test_signals_ok", &test_signals_ok);
-	test_add(&lst, "test_signals_ko", &test_signals_ko);
-	test_add(&lst, "test_signals_print_ok", &test_signals_print_ok);
-	test_add(&lst, "test_signals_print_ko", &test_signals_print_ko);
-	test_add(&lst, "test_signals_buse", &test_signals_buse);
-	test_add(&lst, "test_signals_abort", &test_signals_abort);
-	test_add(&lst, "test_signals_fpe", &test_signals_fpe);
-	test_add(&lst, "test_signals_timeout", &test_signals_timeout);
-	test_add(&lst, "test_signals_segv", &test_signals_segv);
-	tests_run(&lst);
-	tests_del(&lst);
+	test_list = NULL;
+	test_list_add(&test_list, "test_signals_ok", &test_signals_ok);
+	test_list_add(&test_list, "test_signals_ko", &test_signals_ko);
+	test_list_add(&test_list, "test_signals_print_ok", &test_signals_print_ok);
+	test_list_add(&test_list, "test_signals_print_ko", &test_signals_print_ko);
+	test_list_add(&test_list, "test_signals_buse", &test_signals_buse);
+	test_list_add(&test_list, "test_signals_abort", &test_signals_abort);
+	test_list_add(&test_list, "test_signals_fpe", &test_signals_fpe);
+	test_list_add(&test_list, "test_signals_timeout", &test_signals_timeout);
+	test_list_add(&test_list, "test_signals_segv", &test_signals_segv);
+	test_list_run(&test_list);
+	test_list_del(&test_list);
 }

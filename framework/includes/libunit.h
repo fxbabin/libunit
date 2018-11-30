@@ -18,39 +18,42 @@
 # include <signal.h>
 # include <sys/wait.h>
 
-# define TLRED		"\e[38;2;239;95;89m"
-# define TLGREEN	"\e[38;2;4;203;89m"
-# define TRED		"\e[38;2;255;10;10m"
-# define TRESET		"\e[0;38;255;255;255m"
-# define T_TIMEOUT	3
+# define T_LRED				"\e[38;2;239;95;89m"
+# define T_LGREEN			"\e[38;2;4;203;89m"
+# define T_RED				"\e[38;2;255;10;10m"
+# define T_RESET			"\e[0;38;255;255;255m"
+# define T_TIMEOUT_DELAY	3
 
-typedef struct		s_test
+typedef struct				s_test_list
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}					t_test;
+	char					*test_name;
+	int						(*test_function)(void);
+	struct s_test_list		*next;
+}							t_test_list;
 
-t_test				*test_create(char *test_name, int (*test)(void));
-void				test_add(t_test **test_lst, char *test_name,
-						int (*test)(void));
-void				tests_del(t_test **test_lst);
+t_test_list					*test_list_create(char *test_name,
+								int (*test_function)(void));
+void						test_list_add(t_test_list **test_list,
+								char *test_name, int (*test)(void));
+void						test_list_del(t_test_list **test_list);
+void						ut_putstr(char *str);
+int							ut_putstr_error(char *str);
+void						ut_putnbr(int nb);
+void						ut_putstr_with_spaces(char *str, int width);
+void						ut_puttest_result(char *test_name, char *color_code,
+								char *result);
+void						ut_putscore(int tests_passed, int tests_total);
+void						ut_putscore_wrapper(int tests_passed,
+								int tests_total);
 
-void				child_process(t_test *test);
-void				parent_process(t_test *test, int *n_pass);
-void				tests_run(t_test **testlst);
-void				tests_run_wrapper(char *wname, t_test **testlst);
-
-int					get_stdout_fd(int *p_fd);
-char				*get_stdout_buffer(int buff_size, char *buff_out,
-						int stdout_fd, int *p_fd);
-
-void				ut_putstr(char *str);
-int					ut_putstr_err(char *str);
-void				ut_putnbr(int nb);
-void				ut_putstr_wild(char *str, int width);
-void				ut_putsig(char *test_name, char *col1, char *text);
-void				ut_putscore(int n_pass, int n_tot);
-void				ut_putscore_wrapper(int n_pass, int n_tot);
+void						child_process(t_test_list *test_list);
+void						parent_process(t_test_list *test_list,
+								int *tests_passed);
+void						test_list_run(t_test_list **test_list);
+void						test_list_run_wrapper(char *wrapper_name,
+								t_test_list **test_list);
+int							get_stdout_fd(int *p_fd);
+char						*get_stdout_buffer(int buff_size, char *buff_out,
+								int stdout_fd, int *p_fd);
 
 #endif

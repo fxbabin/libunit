@@ -12,6 +12,11 @@
 
 #include "libunit.h"
 
+/*
+** Write the input string on stdout
+** ex : "Error :: malloc failed"
+*/
+
 void	ut_putstr(char *str)
 {
 	int		i;
@@ -27,7 +32,12 @@ void	ut_putstr(char *str)
 	write(1, str, i);
 }
 
-void	ut_putstr_wild(char *str, int width)
+/*
+** Write the input string on stdout with spaces at the end
+** ex : "test_1  "
+*/
+
+void	ut_putstr_with_spaces(char *str, int width)
 {
 	int		i;
 
@@ -47,15 +57,24 @@ void	ut_putstr_wild(char *str, int width)
 		write(1, " ", 1);
 }
 
-void	ut_putsig(char *test_name, char *col1, char *text)
+/*
+** Write the result of a test (with colors)
+** ex : " : [OK]"
+*/
+
+void	ut_puttest_result(char *test_name, char *color_code, char *result)
 {
-	ut_putstr_wild(test_name, 25);
+	ut_putstr_with_spaces(test_name, 25);
 	ut_putstr(" : [");
-	ut_putstr(col1);
-	ut_putstr(text);
-	ut_putstr(TRESET);
+	ut_putstr(color_code);
+	ut_putstr(result);
+	ut_putstr(T_RESET);
 	ut_putstr("]\n");
 }
+
+/*
+** Write a number on stdout
+*/
 
 void	ut_putnbr(int nb)
 {
@@ -80,16 +99,21 @@ void	ut_putnbr(int nb)
 	}
 }
 
-void	ut_putscore(int n_pass, int n_tot)
+/*
+** Write the number of tests passed (with colors)
+** ex : "=============>   1 / 5 tests passed    <============="
+*/
+
+void	ut_putscore(int tests_passed, int tests_total)
 {
-	if (n_pass == n_tot)
-		ut_putstr(TLGREEN);
+	if (tests_passed == tests_total)
+		ut_putstr(T_LGREEN);
 	else
-		ut_putstr(TLRED);
+		ut_putstr(T_LRED);
 	ut_putstr("========================>   ");
-	ut_putnbr(n_pass);
+	ut_putnbr(tests_passed);
 	ut_putstr(" / ");
-	ut_putnbr(n_tot);
+	ut_putnbr(tests_total);
 	ut_putstr(" tests passed   <========================\n");
-	ut_putstr(TRESET);
+	ut_putstr(T_RESET);
 }

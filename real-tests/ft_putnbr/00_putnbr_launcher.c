@@ -14,15 +14,15 @@
 
 void	putnbr_launcher(void)
 {
-	t_test		*lst;
+	t_test_list		*test_list;
 
-	lst = NULL;
-	test_add(&lst, "test_putnbr_int_min", &test_putnbr_int_min);
-	test_add(&lst, "test_putnbr_m_20", &test_putnbr_m_20);
-	test_add(&lst, "test_putnbr_zero", &test_putnbr_zero);
-	test_add(&lst, "test_putnbr_one", &test_putnbr_one);
-	test_add(&lst, "test_putnbr_p_20", &test_putnbr_p_20);
-	test_add(&lst, "test_putnbr_int_max", &test_putnbr_int_max);
-	tests_run(&lst);
-	tests_del(&lst);
+	test_list = NULL;
+	test_list_add(&test_list, "test_putnbr_int_min", &test_putnbr_int_min);
+	test_list_add(&test_list, "test_putnbr_m_20", &test_putnbr_m_20);
+	test_list_add(&test_list, "test_putnbr_zero", &test_putnbr_zero);
+	test_list_add(&test_list, "test_putnbr_one", &test_putnbr_one);
+	test_list_add(&test_list, "test_putnbr_p_20", &test_putnbr_p_20);
+	test_list_add(&test_list, "test_putnbr_int_max", &test_putnbr_int_max);
+	test_list_run(&test_list);
+	test_list_del(&test_list);
 }
