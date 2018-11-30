@@ -22,6 +22,7 @@
 # define TLGREEN	"\e[38;2;4;203;89m"
 # define TRED		"\e[38;2;255;10;10m"
 # define TRESET		"\e[0;38;255;255;255m"
+# define T_TIMEOUT	3
 
 typedef struct		s_test
 {

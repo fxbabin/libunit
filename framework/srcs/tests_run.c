@@ -23,7 +23,7 @@ void	child_process(t_test *test)
 	if (!test)
 		exit(ut_putstr_err("child_process : NULL parameter\n"));
 	signal(SIGALRM, exit_timeout);
-	alarm(1);
+	alarm(T_TIMEOUT);
 	exit((test->test() == 0) ? 0 : -1);
 }
 
