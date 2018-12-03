@@ -6,7 +6,7 @@
 /*   By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:52:16 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 16:59:56 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/12/03 20:05:53 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,20 @@
 #include "ft_memcpy/memcpy_test.h"
 #include "ft_putstr/putstr_test.h"
 #include "ft_putnbr/putnbr_test.h"
+#include "ft_atoi/atoi_test.h"
+
+#include <stdio.h>
 
 int		main(void)
 {
-	memset_launcher();
-	bzero_launcher();
-	memcpy_launcher();
-	putstr_launcher();
-	putnbr_launcher();
-	return (0);
+	int		err;
+
+	err = 0;
+	err |= memset_launcher();
+	err |= bzero_launcher();
+	err |= memcpy_launcher();
+	err |= putstr_launcher();
+	err |= putnbr_launcher();
+	err |= atoi_launcher();
+	return (-err);
 }

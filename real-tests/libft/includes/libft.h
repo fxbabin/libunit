@@ -30,5 +30,6 @@
 # include "str.h"
 # include "utils.h"
 # include "ft_printf.h"
+# include <inttypes.h>
 
 #endif

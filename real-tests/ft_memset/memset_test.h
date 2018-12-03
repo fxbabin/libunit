@@ -6,7 +6,7 @@
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/30 16:21:12 by fbabin            #+#    #+#             */
-/*   Updated: 2018/11/29 23:35:52 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/12/02 14:27:38 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libunit.h"
 # include "libft.h"
 
-void	memset_launcher(void);
+int		memset_launcher(void);
 int		test_memset_simple_1(void);
 int		test_memset_tab(void);
 int		test_memset_newline(void);

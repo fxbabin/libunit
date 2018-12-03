@@ -6,23 +6,29 @@
 #    By: fbabin <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/28 19:49:12 by fbabin            #+#    #+#              #
-#    Updated: 2018/12/01 00:02:26 by fbabin           ###   ########.fr        #
+#    Updated: 2018/12/02 21:46:50 by bleplat          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	libunit.a
 
+FNT				=	ut_list \
+					ut_putstr \
+					ut_putstr_wrapper \
+					ut_run \
+					ut_run_wrapper \
+					ut_stdout \
+					ut_set_display \
+
 CC				=	gcc
 FLAGS			=	-Wall -Werror -Wextra
 
-_SRCS			=	test_list.c tests_run.c test_stdout.c test_putstr.c \
-					tests_run_wrapper.c test_putstr_wrapper.c
+INCLUDES		=	includes
+SRC_DIR			=	srcs
+OBJ_DIR			=	obj
 
-HEADER_DIR		=	includes
-HEADER			=	$(HEADER_DIR)/libunit.h
-SRCS_DIR		=	srcs
-SRCS			=	$(addprefix $(SRCS_DIR)/, $(_SRCS))
-OBJS			=	$(SRCS:.c=.o)
+SRC				=	$(patsubst %, $(SRC_DIR)/%.c, $(FNT))
+OBJ				=	$(patsubst %, $(OBJ_DIR)/%.o, $(FNT))
 
 #COLORS
 _CYAN=\x1b[36m
@@ -30,25 +36,30 @@ _GREEN=\x1b[32m
 _YELLOW=\x1b[33m
 _END=\x1b[0m
 
-all: $(HEADER) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS)
-		@ar rcs $(NAME) $(OBJS)
-		@echo "$(NAME) : $(_GREEN)Done$(_END)"
+$(NAME): $(OBJ)
+		@ar rcs $(NAME) $(OBJ)
+		@ranlib $(NAME)
+		@echo $@ ": $(_GREEN)Done$(_END)"
 
-%.o : %.c $(HEADER)
-		@$(CC) $(CFLAGS) -c $< -o $@ -I includes/
+$(OBJ_DIR):
+		@mkdir -p $@
+		@echo $@ ": $(_GREEN)Done$(_END)"
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c $(INCLUDES)/libunit.h | $(OBJ_DIR)
+		@$(CC) $(CFLAGS) -o $@ -c $< -I $(INCLUDES)
+		@echo $@ ": $(_GREEN)Done$(_END)"
 
 clean:
-		@/bin/rm -f $(OBJS)
-		@echo "libunit clean : $(_GREEN)Done$(_END)"
+		@/bin/rm -f $(OBJ)
+		@/bin/rm -rf $(OBJ_DIR)
+		@echo $@ ": $(_GREEN)Done$(_END)"
 
 fclean: clean
 		@/bin/rm -f $(NAME)
-		@echo "libunit fclean : $(_GREEN)Done$(_END)"
+		@echo $@ ": $(_GREEN)Done$(_END)"
 
-re:
-		@make fclean
-		@make
+re: fclean all
 
 .PHONY: all clean fclean re

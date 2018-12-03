@@ -6,7 +6,7 @@
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/30 16:18:59 by fbabin            #+#    #+#             */
-/*   Updated: 2018/09/30 16:23:45 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/12/02 22:58:44 by bleplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int		test_memset_newline(void)
 	char	buff1[100];
 	char	buff2[100];
 
-	memset((char*)&buff1, '\n', 3);
-	ft_memset((char*)&buff2, '\n', 3);
-	if (strcmp(buff1, buff2) == 0)
+	memset(buff1, '\n', 3);
+	ft_memset(buff2, '\n', 3);
+	if (memcmp(buff1, buff2, 3) == 0)
 		return (0);
 	else
 		return (-1);

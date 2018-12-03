@@ -6,34 +6,57 @@
 #    By: fbabin <fbabin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/20 22:51:42 by fbabin            #+#    #+#              #
-#    Updated: 2018/11/29 19:57:29 by fbabin           ###   ########.fr        #
+#    Updated: 2018/12/02 23:41:01 by fbabin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	test_signals
+NAME				=	test_signals
 
-CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra
+CC					=	gcc
+CFLAGS				=	-Wall -Werror -Wextra
 
-_SRCS_M			=	main.c
+_SRCS_M				=	main.c
 
-_SRCS_SIGNALS  	=	00_signals_launcher.c 03_signals_print_ok.c \
-					06_signals_abort.c ft_strcat.c 01_signals_ok.c \
-					04_signals_print_ko.c 07_signals_fpe.c 02_signals_ko.c \
-					05_signals_buse.c 08_signals_timeout.c ft_putstr.c \
-					09_signals_segv.c ft_strlen.c
+_SRCS				=	ft_strcat.c ft_strlen.c ft_strjoinclr.c \
+						ft_strcat_len.c ft_random_formula.c ft_putstr_wrong.c \
+						ft_putstr.c ft_fibonacci.c
 
-_LIBUNIT		=	libunit.a
-HEADER_DIR		=	../framework/includes
-HEADER			=	$(HEADER_DIR)/libunit.h
+_SRCS_STRCAT		= 	00_strcat_launcher.c 01_strcat_ok.c 
+_SRCS_STRLEN		= 	00_strlen_launcher.c 01_strlen_segv.c 
+_SRCS_STRJOINCLR	= 	00_strjoinclr_launcher.c 01_strjoinclr_abort.c 
+_SRCS_STRCAT_LEN	= 	00_strcat_len_launcher.c 01_strcat_len_buse.c 
+_SRCS_RAND_FORM		= 	00_random_formula_launcher.c 01_random_formula_fpe.c 
+_SRCS_PUTSTR_W		= 	00_putstr_wrong_launcher.c 01_putstr_wrong_print_ko.c 
+_SRCS_PUTSTR		= 	00_putstr_launcher.c 01_putstr_print_ok.c 
+_SRCS_FIBONACCI		= 	00_fibonacci_launcher.c 01_fibonacci_timeout.c 
 
-SRCS_DIR		= .
-SRCS_SIGNALS	= signals
-LIBUNIT_DIR		= ../framework
-SRCS			= $(addprefix $(SRCS_DIR)/, $(_SRCS_M))
-SRCS			+= $(addprefix $(SRCS_SIGNALS)/, $(_SRCS_SIGNALS))
-LIBUNIT			= $(addprefix $(LIBUNIT_DIR)/, $(_LIBUNIT))
-OBJS			= $(SRCS:.c=.o)
+_LIBUNIT			=	libunit.a
+HEADER_DIR			=	../framework/includes
+HEADER				=	$(HEADER_DIR)/libunit.h
+
+SRCS_DIR			= .
+SRCS_TEST			= tested_functions
+SRCS_STRCAT			= ft_strcat
+SRCS_STRLEN			= ft_strlen
+SRCS_STRJOINCLR		= ft_strjoinclr
+SRCS_STRCAT_LEN		= ft_strcat_len
+SRCS_RAND_FORM		= ft_random_formula
+SRCS_PUTSTR_W		= ft_putstr_wrong
+SRCS_PUTSTR			= ft_putstr
+SRCS_FIBONACCI		= ft_fibonacci
+LIBUNIT_DIR			= ../framework
+SRCS				= $(addprefix $(SRCS_DIR)/, $(_SRCS_M))
+SRCS				+= $(addprefix $(SRCS_STRCAT)/, $(_SRCS_STRCAT))
+SRCS				+= $(addprefix $(SRCS_STRLEN)/, $(_SRCS_STRLEN))
+SRCS				+= $(addprefix $(SRCS_STRJOINCLR)/, $(_SRCS_STRJOINCLR))
+SRCS				+= $(addprefix $(SRCS_STRCAT_LEN)/, $(_SRCS_STRCAT_LEN))
+SRCS				+= $(addprefix $(SRCS_RAND_FORM)/, $(_SRCS_RAND_FORM))
+SRCS				+= $(addprefix $(SRCS_PUTSTR_W)/, $(_SRCS_PUTSTR_W))
+SRCS				+= $(addprefix $(SRCS_PUTSTR)/, $(_SRCS_PUTSTR))
+SRCS				+= $(addprefix $(SRCS_FIBONACCI)/, $(_SRCS_FIBONACCI))
+SRCS				+= $(addprefix $(SRCS_TEST)/, $(_SRCS))
+LIBUNIT				= $(addprefix $(LIBUNIT_DIR)/, $(_LIBUNIT))
+OBJS				= $(SRCS:.c=.o)
 
 #COLORS
 _CYAN=\x1b[36m
