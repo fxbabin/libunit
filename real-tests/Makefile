@@ -13,7 +13,7 @@
 NAME			=	check_libft
 
 CC				=	clang
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Wextra
 
 _SRCS_M			=	main.c
 
