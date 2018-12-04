@@ -37,6 +37,42 @@ void	strcat_launcher(void)
 	ut_list_del(&ut_list);
 }
 ```
+
+Then you can build tests as the one below.
+
+```
+int		test_strcat_ok(void)
+{
+	char	buff1[100];
+
+	buff1[0] = '\0';
+	if (strcmp(ft_strcat(buff1, "tototata"), "tototata") == 0)
+		return (0);
+	else
+		return (-1);
+}
+```
+
+Printing functions can be tested like in the example below.
+
+```
+int		test_putstr_print_ok(void)
+{
+	int		stdout_fd;
+	int		p_fd[2];
+	char	buff1[100];
+
+	buff1[0] = '\0';
+	stdout_fd = ut_get_stdout_fd(p_fd);
+	ft_putstr("hello");
+	ut_get_stdout_buffer(100, buff1, stdout_fd, p_fd);
+	if (strcmp(buff1, "hello") == 0)
+		return (0);
+	else
+		return (-1);
+}
+```
+
 ### Handled signals
 
 The crash signals handled in the framework are metionned below.
@@ -88,6 +124,12 @@ t_display_test			ut_use_display_test_fnt(void (*f)(char*, int));
 t_display_total			ut_use_display_total_fnt(void (*f)(int, int));
 ```
 
+### Bonus
+
+* Additional signals : Abort, Floating point exception, Timeout
+* Handle printing functions
+* Custom display for tests and results (an user can add his own display function)
+* Continuous integration
 
 
 
