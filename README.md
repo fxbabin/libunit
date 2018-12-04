@@ -24,6 +24,12 @@ The crash signals handled in the framework are metionned below.
 
 ## Framework code format
 
+### Available functions
+
+| Prototype   | Description |
+| --------    | -------------- |
+| void	ut_list_add(t_ut_list **ut_list, char *ut_name, int (*ut_function)(void)); | OK             |
+
 ### Launcher format
 ```
 void	strcat_launcher(void)
