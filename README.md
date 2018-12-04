@@ -126,6 +126,7 @@ t_display_total			ut_use_display_total_fnt(void (*f)(int, int));
 
 ### Bonus
 
+* Color display
 * Additional signals : Abort, Floating point exception, Timeout
 * Handle printing functions
 * Custom display for tests and results (an user can add his own display function)
