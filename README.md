@@ -26,9 +26,34 @@ The crash signals handled in the framework are metionned below.
 
 ### Available functions
 
-| Prototype   | Description |
-| --------    | -------------- |
-|```void	ut_list_add(t_ut_list **ut_list, char *ut_name, int (*ut_function)(void));``` | OK             |
+| Function Names                 | Description                                                |
+| ------------------------------ | ---------------------------------------------------------- |
+| ```ut_list_add```              | Add a test to the unit_test list                           |
+| ```ut_list_del```              | Delete all the tests in the unit_test list (free the list) |
+| ```ut_putstr```                | Write a string on stdout                                   |
+| ```ut_display_test```          | Display test result in normal format                       |
+| ```ut_display_test_wrapper```  | Display test result in one_line format                     |
+| ```ut_list_run```              | Run all the tests in the unit_test list                    |
+| ```ut_use_display_test_fnt```  | Set the display function for test (can be customized)      |
+| ```ut_use_display_total_fnt``` | Set the display function for result (can be customized)    |
+
+```
+typedef struct			s_ut_list
+{
+	char			*ut_name;
+	int			(*ut_function)(void);
+	struct s_ut_list	*next;
+}				t_ut_list;
+
+void				ut_list_add(t_ut_list **ut_list, char *ut_name, int (*ut_function)(void));
+void				ut_list_del(t_ut_list **ut_list);
+void				ut_putstr(char *str);
+void				ut_display_test(char *ut_name, int status);
+void				ut_display_test_wrapper(char *ut_name, int status);
+int				ut_list_run(t_ut_list **ut_list);
+t_display_test			ut_use_display_test_fnt(void (*f)(char*, int));
+t_display_total			ut_use_display_total_fnt(void (*f)(int, int));
+```
 
 ### Launcher format
 ```
