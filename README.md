@@ -20,6 +20,8 @@ The crash signals handled in the framework are metionned below.
 | SIGABRT  | ABORT          | A               |
 | SIGFPE   | FPE            | F               |
 
+![Screenshot](test.png)
+
 ## Framework code format
 
 ### Launcher format
