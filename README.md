@@ -37,6 +37,8 @@ The crash signals handled in the framework are metionned below.
 | ```ut_use_display_test_fnt```  | Set the display function for test (can be customized)      |
 | ```ut_use_display_total_fnt``` | Set the display function for result (can be customized)    |
 
+### Prototypes
+
 ```
 typedef struct			s_ut_list
 {
