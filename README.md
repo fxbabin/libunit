@@ -8,6 +8,8 @@ This project includes a framework to test functions in C language. As functions 
 
 ### Getting started
 
+Libunit follows a particular file architecture for tests. Tests are next to the tested project folder. Each test has the name of the function tested. In each test, there is a launcher file (starting with "00_") which will launch all the tests on the function. Tests starts with numbers "01_", "02_", ... which set the processing order. 
+
 ```
 .
 +-- Makefile
@@ -21,6 +23,7 @@ This project includes a framework to test functions in C language. As functions 
 |   +-- function_1_test.h
 ```
 
+In order to run tests your first need to define your launcher function as below.
 
 ```
 void	strcat_launcher(void)
