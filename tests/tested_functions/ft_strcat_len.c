@@ -6,7 +6,7 @@
 /*   By: fbabin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/30 16:44:15 by fbabin            #+#    #+#             */
-/*   Updated: 2018/12/02 22:37:41 by fbabin           ###   ########.fr       */
+/*   Updated: 2018/12/04 19:59:35 by fbabin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char		*ft_strcat(char *s1, const char *s2)
 	return (tmp);
 }
 
-int		ft_strcat_len(char *s1, char *s2)
+int				ft_strcat_len(char *s1, char *s2)
 {
 	ft_strcat(s1, s2);
 	return (ft_strlen(s1));
