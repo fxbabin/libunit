@@ -1,6 +1,6 @@
 # Libunit (42 rush)
 
-![Screenshot](real_test.png)
+![Screenshot](imgs/real_test.png)
 
 Libunit is a 42 rush project (project realised on a week-end) consisting in building a library for unitary testing in C. The rush was realized by me (fbabin) and bleplat.
 
@@ -87,7 +87,7 @@ The crash signals handled in the framework are metionned below.
 | SIGABRT  | ABORT          | A               |
 | SIGFPE   | FPE            | F               |
 
-![Screenshot](test.png)
+![Screenshot](imgs/test.png)
 
 ## Framework code format
 
